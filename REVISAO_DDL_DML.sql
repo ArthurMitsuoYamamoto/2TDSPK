@@ -1,34 +1,34 @@
-create table País (id_país number primary key,
-                    nome varchar2(30));
-                    
-create table estado (id_estado number primary key,
-                        nome   varchar2(30),
-                        id_pais number);
-                        
-alter table estado add constraint fk_estado 
-foreign key (id_pais) references pais (id_pais);
+CREATE TABLE PAIS (ID_PAIS NUMBER PRIMARY KEY,
+                   NOME VARCHAR2(30));
+                   
+CREATE TABLE ESTADO (ID_ESTADO NUMBER PRIMARY KEY,
+                    NOME    VARCHAR2(30),
+                    ID_PAIS NUMBER);
 
-create table cidade (id_cidade number,
-                    nome varchar2(30),
-                     id_cidade number);
-                    
-                    
-alter table cidade add constraint fk_cidade
-foreign key (id_estado) references cidade (id_estado);
+ALTER TABLE ESTADO ADD CONSTRAINT FK_ESTADO 
+FOREIGN KEY (ID_PAIS) REFERENCES PAIS (ID_PAIS);
 
-create table bairro (id_bairro number,
-                    nome varchar2(30),
-                    id_cidade number);
+CREATE TABLE CIDADE (ID_CIDADE NUMBER,
+                     NOME VARCHAR2(30),
+                     ID_ESTADO NUMBER);
+
+ALTER TABLE CIDADE ADD CONSTRAINT FK_CIDADE
+FOREIGN KEY (ID_ESTADO) REFERENCES ESTADO (ID_ESTADO);
+
+
+CREATE TABLE BAIRRO  (ID_BAIRRO NUMBER,
+                     NOME VARCHAR2(30),
+                     ID_CIDADE NUMBER);
+
 ALTER TABLE BAIRRO ADD CONSTRAINT FK_BAIRRO
-FOREIGN KEY (ID_CIDADE) REFERENCES CIDADE (ID_CIDADE);
+FOREIGN KEY (ID_CIDADE) REFERENCES CIDADE (ID_CIDADE); 
 
 CREATE TABLE ENDERECO_CLIENTE (ID_CLIENTE NUMBER,
-                                NOME VARCHAR2(100),
-                                CEP VARCHAR2(12),
-                                ID_BAIRRO NUMBER);
-
+                               NOME VARCHAR2(100),
+                               CEP VARCHAR2(12),
+                               ID_BAIRRO NUMBER);
+                               
 ALTER TABLE ENDERECO_CLIENTE ADD CONSTRAINT FK_END_CLIENTE
-FOREIGN KEY (ID_BAIRRO) REFERENCES BAIRRO (ID_BAIRRO);
-                    
+FOREIGN KEY (ID_BAIRRO) REFERENCES BAIRRO (ID_BAIRRO); 
 
                     
